@@ -1,0 +1,36 @@
+<h1 id="bookTitle"><%= @book.title %></h1>
+
+<h2 id="bookAuthor"><%= @book.author %></h2>
+
+<h3 id="bookGenre"><%= @book.genre %></h3>
+
+<h4 id="bookNumPages"><%= @book.num_pages %> pages</h4>
+
+<div class="edit">
+  <%= form_for(@book, :html => {:id => "#{@book.id}"}) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+    <br>
+    <%= f.label :genre %>
+    <%= f.text_field :genre %>
+    <br>
+    <%= f.label "Number of Pages" %>
+    <%= f.text_field :num_pages %>
+    <br>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<div class="comments">
+  <div class="comment_list">
+    
+  </div>
+
+  <div class="add_comment">
+    
+  </div>
+</div>
+

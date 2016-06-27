@@ -1,0 +1,16 @@
+<h1>My Books</h1>
+
+<%= form_for(@book, :html => {:id => "bookForm"}) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+<% end %>
+
+<ul class="books">
+  <% @books.each do |book| %>
+    <li><h2><%= link_to book.title, book_path(book) %></h2></li>
+  <% end %>
+</ul>
+
+
+
+
