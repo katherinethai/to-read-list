@@ -1,13 +1,31 @@
 <h1>My Books</h1>
 
-<%= form_for(@book, :html => {:id => "bookForm"}) do |f| %>
+<%= form_for @book, html: {id: 'bookForm'} do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
 <% end %>
 
+
 <ul class="books">
   <% @books.each do |book| %>
-    <li><h2><%= link_to book.title, book_path(book) %></h2></li>
+    <li><h2 id="<%=book.id%>" class="x">X</h2><h2 class= "book" id="book_<%=book.id%>"><%= book.title %></h2></li>
+    <div class="book_<%=book.id%> edit">
+      <%= form_for(book, :html => {:id => "#{book.id}"}) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+        <br>
+        <%= f.label :author %>
+        <%= f.text_field :author %>
+        <br>
+        <%= f.label :genre %>
+        <%= f.text_field :genre %>
+        <br>
+        <%= f.label "Number of Pages" %>
+        <%= f.text_field :num_pages %>
+        <br>
+        <%= f.submit "Save" %>
+      <% end %>
+    </div>
   <% end %>
 </ul>
 

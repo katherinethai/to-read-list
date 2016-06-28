@@ -2,6 +2,17 @@ ul {
   list-style: none;
 }
 
-.hidden {
-  display: none;
+.edit {
+  visibility: hidden;
+  height: 0;
+  transition: all 0.3s ease;
+}
+
+.expanded {
+  visibility: visible;
+  height: 100%;
+}
+
+.read {
+  text-decoration: line-through;
 }

@@ -1,3 +1,5 @@
+require 'pry'
+require 'json'
 class BooksController < ApplicationController
   def index
     @books = Book.all
@@ -21,19 +23,19 @@ class BooksController < ApplicationController
     set_book
     @book.update(book_params)
     respond_to do |format|
-      format.html { render :show }
       format.json { render json: @book }
     end
   end
 
   def show
     set_book
+    render json: @book
   end
 
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :genre, :num_pages, :comments)
+    params.require(:book).permit(:title, :author, :genre, :num_pages, :read, :id)
   end
 
   def set_book
