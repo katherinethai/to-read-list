@@ -103,3 +103,9 @@ ul {
   text-align: left;
 }
 
+.glyphicon {
+  padding-bottom: 15px;
+  padding-right: 10px;
+  font-size: 20px;
+}
+

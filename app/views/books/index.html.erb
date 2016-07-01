@@ -9,10 +9,10 @@
   <div id="book-list">
     <ul class="books">
       <% @books.each do |book| %>
-      <button type="button" id="<%=book.id%>" class="btn btn-default btn-lg">
+
         <span class="glyphicon glyphicon-remove" id="<%=book.id%>" aria-hidden="true"></span>
-      </button>
-      <h3 class= "book" id="book_<%=book.id%>"><%= book.title %></h3></li>
+        <h3 class= "book" id="book_<%=book.id%>"><%= book.title %></h3></li>
+        <span class="glyphicon glyphicon-ok <%=book.id%>" aria-hidden="true"></span>
         <div class="book_<%=book.id%> edit">
           <%= form_for(book, :html => {:id => "#{book.id}"}) do |f| %>
             <%= f.label :title %>

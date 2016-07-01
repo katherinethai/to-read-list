@@ -90,7 +90,6 @@ $(function () {
         if (read) {
           book.markAsUnread();
           book.save(book.id);
-          debugger;
           $('.' + book.id).removeClass('read');
         } else {
           book.markAsRead();
@@ -121,4 +120,22 @@ $(function () {
       }
     });
   });
+
+
+  $('.glyphicon-remove').click(function(e) {
+    var elementId = e['toElement'].id;
+    var bookId = elementId;
+    var url = '/books/' + elementId;
+    $.ajax({
+      type: 'DELETE',
+      url: url,
+      success: function (data) {
+        $('#' + data).remove();
+        $('#book_' + data).remove();
+        $('.' + data).remove();
+      }
+    });
+  });
 });
+
+

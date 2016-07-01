@@ -30,6 +30,12 @@ class BooksController < ApplicationController
     render json: @book
   end
 
+  def destroy
+    set_book
+    @book.destroy
+    render json: @book.id
+  end
+
   private
 
   def book_params
