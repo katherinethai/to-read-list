@@ -64,17 +64,17 @@ $(function () {
 
   var title = $('.book');
 
-  title.dblclick(function(e) {
+  title.click(function(e) {
     var elementId = e['toElement'].id;
     var editForm = elementId;
     $('.' + elementId).toggleClass('expanded');
   });
 
-  var finish = $('h3');
+  var finish = $('.glyphicon-ok');
 
   finish.click(function(e) {
     var elementId = e['toElement'].id;
-    var bookId = elementId;
+    var bookId = elementId; 
     var url = '/books/' + elementId;
     $.ajax({
       type: 'GET',
@@ -90,11 +90,11 @@ $(function () {
         if (read) {
           book.markAsUnread();
           book.save(book.id);
-          $('.' + book.id).removeClass('read');
+          $('#book_' + book.id).removeClass('read');
         } else {
           book.markAsRead();
           book.save(book.id);
-          $('.' + book.id).addClass('read');
+          $('#book_' + book.id).addClass('read');
         }
       }
     });
@@ -133,6 +133,7 @@ $(function () {
         $('#' + data).remove();
         $('#book_' + data).remove();
         $('.' + data).remove();
+        $('.book_' + data).remove();
       }
     });
   });

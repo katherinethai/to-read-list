@@ -12,7 +12,7 @@
 
         <span class="glyphicon glyphicon-remove" id="<%=book.id%>" aria-hidden="true"></span>
         <h3 class= "book" id="book_<%=book.id%>"><%= book.title %></h3></li>
-        <span class="glyphicon glyphicon-ok <%=book.id%>" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-ok <%=book.id%>" id="<%=book.id%>" aria-hidden="true"></span>
         <div class="book_<%=book.id%> edit">
           <%= form_for(book, :html => {:id => "#{book.id}"}) do |f| %>
             <%= f.label :title %>
