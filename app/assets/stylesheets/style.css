@@ -1,5 +1,78 @@
+@import 'https://fonts.googleapis.com/css?family=Grand+Hotel|Raleway:300,400';
+@import 'https://fonts.googleapis.com/css?family=Tinos';
+
+
+body {
+  background-color: #eeeeee;
+}
+
+h1 {
+  font-family: 'Grand Hotel', cursive;
+  font-size: 150px;
+  text-align: center;
+  color: #4a9a8a;
+  margin: 20px;
+}
+
+h2 {
+  font-family: 'Grand Hotel', cursive;
+  font-size: 50px;
+  text-align: center;
+  color: #4a9a8a;
+}
+
+h3 {
+  font-family: 'Tinos', serif;
+  font-size: 30px;
+  display: inline;
+}
+
+a {
+  color: #808080;
+  font-family: 'Tinos', serif;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+input[type=text]#add-book {
+  width: 30%;
+  height: 50px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 30px;
+  font-family: 'Tinos', serif;
+}
+
+#title {
+  font-size: 30px;
+  padding: 10px;
+}
+
+#book-list {
+  text-align: center;
+  clear: left; float: left; position: relative; left: 50%; 
+
+}
+
+.links {
+  text-align: center;
+}
+
+.sign-out {
+  float: right;
+  position: absolute;
+  top: 12px;
+  right: 20px;
+}
+
 ul {
   list-style: none;
+  text-align: left;
+  display: block; float: left; position: relative; right: 50%; 
 }
 
 .edit {
@@ -16,3 +89,17 @@ ul {
 .read {
   text-decoration: line-through;
 }
+
+.wrapper {
+  margin: auto;
+  width: 20%;
+}
+
+.center-page {
+  text-align: center;
+}
+
+.form-group {
+  text-align: left;
+}
+

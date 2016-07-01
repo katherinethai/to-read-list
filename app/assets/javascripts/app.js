@@ -19,10 +19,18 @@ $(function () {
 
   Book.prototype.save = function (id) {
     var read = this.read;
+    var title = this.title;
+    var author = this.author;
+    var genre = this.genre;
+    var numPages = this.num_pages;
     var url = '/books/' + id + '/edit'; 
     var data = {
         book: {
           id: id,
+          title: title,
+          author: author,
+          genre: genre,
+          num_pages: numPages,
           read: read
         }
       }
@@ -48,7 +56,7 @@ $(function () {
         success: function (data) {
         document.getElementById("bookForm").reset();
         var book = data;
-        $('.books').append("<li><h2 class='book' id='book_" + book.id + "'>" + book.title + "</h2></li>");
+        $('.books').append("<li><h3 class='book' id='book_" + book.id + "'>" + book.title + "</h3></li>");
         }
       });
     }
@@ -62,9 +70,9 @@ $(function () {
     $('.' + elementId).toggleClass('expanded');
   });
 
-  var X = $('.x');
+  var finish = $('h3');
 
-  X.click(function(e) {
+  finish.click(function(e) {
     var elementId = e['toElement'].id;
     var bookId = elementId;
     var url = '/books/' + elementId;
@@ -82,27 +90,35 @@ $(function () {
         if (read) {
           book.markAsUnread();
           book.save(book.id);
-          $('#book_' + book.id).removeClass('read');
+          debugger;
+          $('.' + book.id).removeClass('read');
         } else {
           book.markAsRead();
           book.save(book.id);
-          $('#book_' + book.id).addClass('read');
+          $('.' + book.id).addClass('read');
         }
       }
     });
   });
   
-  $('submit').click(function(e) {
-    e.preventDefault();
-    var id = this.id
-    var values = $(this).serialize();
-    var posting = $.post('/books/' + id, values);
-    posting.done(function (data) {
-      var book = data;
-      $('#bookTitle').text(book.title);
-      $('#bookAuthor').text(book.author);
-      $('#bookGenre').text(book.genre);
-      $('#bookNumPages').prepend(book.num_pages);
+  $('.save').click(function(e) {
+    var elementId = e['toElement'].id;
+    var url = '/books/' + elementId;
+    $.ajax({
+      type: 'GET',
+      url: url,
+      success: function (data) { 
+        var id = data.id;       
+        var title = data.title;
+        var author = data.author;
+        var genre = data.genre;
+        var numPages = data.num_pages;
+        var read = data.read;
+        var book = new Book(id, title, author, genre, numPages, read);
+        debugger;
+        book.save(book.id);
+        $('#book_' + data.id).text(book.title);
+      }
     });
   });
 });

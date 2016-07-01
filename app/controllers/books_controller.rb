@@ -22,9 +22,7 @@ class BooksController < ApplicationController
   def update
     set_book
     @book.update(book_params)
-    respond_to do |format|
-      format.json { render json: @book }
-    end
+    render json: @book
   end
 
   def show
