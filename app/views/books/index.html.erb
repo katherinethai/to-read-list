@@ -9,27 +9,30 @@
   <div id="book-list">
     <ul class="books">
       <% @books.each do |book| %>
-
-        <span class="glyphicon glyphicon-remove" id="<%=book.id%>" aria-hidden="true"></span>
-        <h3 class= "book" id="book_<%=book.id%>"><%= book.title %></h3></li>
-        <span class="glyphicon glyphicon-ok <%=book.id%>" id="<%=book.id%>" aria-hidden="true"></span>
-        <div class="book_<%=book.id%> edit">
-          <%= form_for(book, :html => {:id => "#{book.id}"}) do |f| %>
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-            <br>
-            <%= f.label :author %>
-            <%= f.text_field :author %>
-            <br>
-            <%= f.label :genre %>
-            <%= f.text_field :genre %>
-            <br>
-            <%= f.label "Number of Pages" %>
-            <%= f.text_field :num_pages %>
-            <br>
-          <% end %>
-          <input type="submit" class="save" id="<%=book.id%>" value="Save">
-        </div>
+        <li>
+          <% if book.title %>
+            <span class="glyphicon glyphicon-remove" id="<%=book.id%>" aria-hidden="true"></span>
+            <h3 class= "book" id="book_<%=book.id%>"><%= book.title %></h3>
+            <span class="glyphicon glyphicon-ok <%=book.id%>" id="<%=book.id%>" aria-hidden="true"></span>
+            <div class="book_<%=book.id%> edit">
+              <%= form_for(book, :html => {:id => "#{book.id}"}) do |f| %>
+                <%= f.label :title %>
+                <%= f.text_field :title %>
+                <br>
+                <%= f.label :author %>
+                <%= f.text_field :author %>
+                <br>
+                <%= f.label :genre %>
+                <%= f.text_field :genre %>
+                <br>
+                <%= f.label :num_pages, "Number of Pages" %>
+                <%= f.text_field :num_pages %>
+                <br>
+              <% end %>
+              <input type="submit" class="save" id="<%=book.id%>" value="Save">
+            </div>
+          <% end %>  
+        </li> 
       <% end %>
     </ul>
   </div>

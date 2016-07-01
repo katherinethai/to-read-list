@@ -22,7 +22,7 @@ $(function () {
     var title = this.title;
     var author = this.author;
     var genre = this.genre;
-    var numPages = this.num_pages;
+    var numPages = this.numPages;
     var url = '/books/' + id + '/edit'; 
     var data = {
         book: {
@@ -37,10 +37,7 @@ $(function () {
     $.ajax({
       type: 'POST',
       data: data,
-      url: url,
-      success: function (data) {
-        alert(data.title + ' was successfully saved!');
-      }
+      url: url
     });
   }
 
@@ -57,6 +54,9 @@ $(function () {
         document.getElementById("bookForm").reset();
         var book = data;
         $('.books').append("<li><h3 class='book' id='book_" + book.id + "'>" + book.title + "</h3></li>");
+        },
+        fail: function (data) {
+          alert('enter a title');
         }
       });
     }
@@ -101,25 +101,31 @@ $(function () {
   });
   
   $('.save').click(function(e) {
-    var elementId = e['toElement'].id;
-    var url = '/books/' + elementId;
-    $.ajax({
-      type: 'GET',
-      url: url,
-      success: function (data) { 
-        var id = data.id;       
-        var title = data.title;
-        var author = data.author;
-        var genre = data.genre;
-        var numPages = data.num_pages;
-        var read = data.read;
-        var book = new Book(id, title, author, genre, numPages, read);
-        debugger;
-        book.save(book.id);
-        $('#book_' + data.id).text(book.title);
-      }
+    var id = e['toElement'].id;
+    var title = $('#book_title').val();
+    var author = $('#book_author').val();
+    var genre = $('#book_genre').val();
+    var numPages = $('#book_num_pages').val();
+    var book = new Book(id, title, author, genre, numPages);
+    book.save(book.id);
+    $('#book_' + book.id).text(book.title);
+    // var url = '/books/' + elementId;
+    // $.ajax({
+    //   type: 'GET',
+    //   url: url,
+    //   success: function (data) { 
+    //     var id = data.id;       
+    //     var title = data.title;
+    //     var author = data.author;
+    //     var genre = data.genre;
+    //     var numPages = data.num_pages;
+    //     var read = data.read;
+    //     var book = new Book(id, title, author, genre, numPages, read);
+    //     debugger;
+    //     book.save(book.id);
+    //     $('#book_' + data.id).text(book.title);
+    //   }
     });
-  });
 
 
   $('.glyphicon-remove').click(function(e) {

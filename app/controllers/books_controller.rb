@@ -2,16 +2,16 @@ require 'pry'
 require 'json'
 class BooksController < ApplicationController
   def index
-    @books = Book.all
-    @book = Book.new
+    @books = current_user.books
+    @book = current_user.books.new
   end
 
   def new
-    @book = Book.new
+    @book = current_user.books.new
   end
 
   def create
-    @book = Book.create(book_params)
+    @book = current_user.books.create(book_params)
     render json: @book, status: 201
   end
 
